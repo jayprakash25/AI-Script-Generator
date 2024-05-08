@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-[#35374B] text-white">
+    <nav class="flex w-full justify-between p-5 py-2 font-semibold">
+      <h1 class="text-3xl text-center text-white text-lg">AI Video - Script</h1>
+      <a class="cursor-pointer">Logout</a>
+    </nav>
+
+    <!-- main container  -->
+    <div class="mt-10 px-4">
+      <h1 class="pb-4">All Blog Posts</h1>
+      <div class="grid gap-y-3">
+
+        {% for script in blogs %}
+
+        <!-- container  -->
+        <a href="blog-details/{{script.id}}">
+        <div class="bg-[#344955] rounded-lg space-y-6 grid gap-y-4 p-4">
+          <div class="grid gap-y-1">
+            <h1 class="font-semibold">{{script.youtube_title}}</h1>
+            <p class="text-sm">
+              {{script.generated_content|truncatechars:100}}
+            </p>
+          </div>
+        </div>
+      </a>
+
+        {% endfor %}
+
+             
+      </div>
+    </div>
+  </body>
+</html>

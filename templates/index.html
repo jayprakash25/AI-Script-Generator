@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI- Blog Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-[#35374B] text-white">
+    <nav class="flex w-full justify-between p-5 py-2 font-semibold">
+      <h1 class="text-3xl text-center text-white text-lg">AI Video - Script</h1>
+      <a href="logout" class="cursor-pointer">Logout</a>
+    </nav>
+
+    <div class="mt-10 px-4">
+      <div class="bg-[#344955] rounded-lg space-y-6 px-4 py-2 text-center">
+        <!-- Intro -->
+        <div class="space-y-4">
+          <h2 class="font-bold text-lg text-center">
+            Welcome to the AI Script generator from video
+          </h2>
+          <p class="font-semibold">
+            Generate high quality scripts from YouTube videos using AI. Simply
+            paste the link below and let us do the work for you...
+          </p>
+        </div>
+
+        <!-- YT Link -->
+        <div class="flex justify-center space-x-4">
+          <input
+            id="ytLink"
+            type="url"
+            placeholder="YouTube URL goes here"
+            class="outline-none w-40 text-black text-sm font-semibold md:w-72 rounded-lg px-3 py-1"
+          />
+          <button
+            id="getScriptBtn"
+            class="bg-[#35374B] px-4 py-2 text-sm font-semibold rounded-lg"
+          >
+            Get Script
+          </button>
+        </div>
+
+        <!-- loader  -->
+
+        <div role="status" id="loader" class="max-w-sm hidden animate-pulse">
+          <div
+            class="h-2 bg-white rounded-full dark:bg-white w-48 mb-4"
+          ></div>
+          <div
+            class="h-1.5 bg-white rounded-full dark:bg-white max-w-[360px] mb-2.5"
+          ></div>
+          <div
+            class="h-1.5 bg-white rounded-full dark:bg-white mb-2.5"
+          ></div>
+          <div
+            class="h-1.5 bg-white rounded-full dark:bg-white max-w-[330px] mb-2.5"
+          ></div>
+          <div
+            class="h-1.5 bg-white rounded-full dark:bg-white max-w-[300px] mb-2.5"
+          ></div>
+          <div
+            class="h-1.5 bg-white rounded-full dark:bg-white max-w-[360px]"
+          ></div>
+          <span class="sr-only">Loading...</span>
+        </div>
+
+
+        <!-- generated blog article  -->
+        <div>
+          <h1 class="font-semibold text-xl">Generated Blog Article</h1>
+          <div id="script" class=""></div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('getScriptBtn').addEventListener('click', async() => {
+        const ytLink = document.getElementById('ytLink').value;
+        const loader = document.getElementById('loader');
+        const script = document.getElementById('script');
+
+        if(ytLink){
+          loader.classList.remove('hidden');
+          script.innerHTML = '';
+
+          const endpoint = '/generate-blog';
+
+          try {
+            const response = await fetch('/generate-blog', {
+              method: 'POST',
+              headers: {
+                'Content-Type' : 'application/json',
+              },
+              body: JSON.stringify({link: ytLink})
+            });
+
+            const data = await response.json();
+            script.innerHTML = data.content;
+            loader.classList.add('hidden');
+          } catch (error) {
+            console.log(error);
+            loader.classList.add('hidden');
+          }
+        } else {
+          alert('Please enter a youtube link');
+        }
+
+      })
+    </script>
+
+  </body>
+</html>

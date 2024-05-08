@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-[#35374B] text-white">
+    <nav class="flex w-full justify-between p-5 py-2 font-semibold">
+      <h1 class="text-3xl text-center text-white text-lg">AI Video - Script</h1>
+      <a href="signup" class="cursor-pointer">Sign-up</a>
+    </nav>
+
+    <div class="mt-10 px-4">
+        <div class="bg-[#344955] rounded-lg space-y-6 px-4 py-2 text-center">
+            <form action="" method="POST">
+                {%csrf_token%}
+            <h1 class="font-bold text-2xl">Login</h1>
+            <div class="grid gap-y-4 place-items-center ">
+                <input id="username" name="username" class="rounded-lg md:w-72 px-4 py-1 outline-none text-black" placeholder="username"/>
+                <input id="password" name="password" class="rounded-lg md:w-72 px-4 py-1 outline-none text-black" placeholder="password" type="password"/>
+
+                <button class="w-56 md:w-72 bg-[#35374B] border-1 rounded-lg py-2">Login</button>
+            </div>
+        </form>
+            </div>
+
+    </div>
+    
+</body>
+</html>
