@@ -121,7 +121,7 @@ def get_transcription(link):
     return transcript.text
 
 def gen_script_from_transcription(transcription):
-    # openai.api_key = "ENTER_YOUR_OPENAI_API"
+    # enter openai api key here
 
     prompt = f"Create a blog post based on the provided YouTube video . The content should be transformed to fit a written format with a clear narrative, engaging headings, and detailed explanations. Ensure it doesn't resemble a video script and is tailored for a reading audience, complete with an introduction and conclusion. The YouTube video content: \n\n{transcription}\n\n"
     response = openai.completions.create(
